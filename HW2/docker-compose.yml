@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app_network
+
+  api:
+    image: qmoo/ccsa-api
+    ports:
+      - "5000:5000"
+    environment:
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_USERNAME=admin
+      - MONGO_PASSWORD=password
+    depends_on:
+      - mongodb
+    networks:
+      - app_network
+
+  frontend:
+    image: qmoo/ccsa-frontend
+    ports:
+      - "30800:30800"
+    depends_on:
+      - api
+    networks:
+      - app_network
+
+volumes:
+  mongodb_data:
+
+networks:
+  app_network:
+    driver: bridge

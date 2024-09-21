@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>預約系統</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>預約系統</h1>
+    </header>
+    <nav>
+        <button id="show-form">預約</button>
+        <button id="show-search">查詢預約</button>
+        <button id="show-calendar">預約日歷</button>
+    </nav>
+    <main>
+        <section id="appointment-form" class="hidden"
+            <h2>預約表單</h2>
+            <form id="booking-form">
+                <label for="name">姓名:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="date">日期:</label>
+                <input type="date" id="date" name="date" required>
+
+                <label for="time">時間:</label>
+                <input type="time" id="time" name="time" required>
+
+                <label for="service">服務類型:</label>
+                <select id="service" name="service" required>
+                    <option value="">請選擇服務</option>
+                    <option value="洗頭">洗頭</option>
+                    <option value="剪頭">剪頭</option>
+                    <option value="燙髮">燙髮</option>
+                </select>
+
+                <button type="submit">提交預約</button>
+            </form>
+        </section>
+        <section id="searchEdit-form" class="hidden"
+            <h2>查詢預約</h2>
+            <form id="search-form">
+                <input type="text" id="searchName" name="searchName" required>
+                <button type="submit" class="btn btn-search">查詢</button>
+            </form>
+            <div id="searchResults"></div>
+        </section>
+        <section id="calendar-container" class="hidden">
+            <div id="calendar">
+                <h2>預約日歷</h2>
+                <div class="calendar-header">
+                    <button id="prev-month">&lt;</button>
+                    <span id="current-month-year"></span>
+                    <button id="next-month">&gt;</button>
+                </div>
+            </div>
+            <table id="calendar-table">
+                <thead>
+                    <tr>
+                        <th>日</th><th>一</th><th>二</th><th>三</th><th>四</th><th>五</th><th>六</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 日历内容将通过JavaScript动态生成 -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
