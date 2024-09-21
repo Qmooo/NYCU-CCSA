@@ -1,6 +1,6 @@
 let currentDate = new Date();
 let appointments = {};
-const API_URL = 'http://api:5001';
+const API_URL = 'http://127.0.0.1:5001';
 
 document.addEventListener('DOMContentLoaded', function() {
     const formSection = document.getElementById('appointment-form');
