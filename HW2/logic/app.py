@@ -72,4 +72,4 @@ def update_appointment(appointment_id):
     return jsonify({"message": "未找到预约或无需更新"}), 404
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0",port=5001)
