@@ -1,47 +1,49 @@
+# 設定檔的版本
 version: '3'
 
+# 這是用來定義services的區塊, 每一個services都代表一個container, 啟動後會照著設定啟動container
 services:
-  mongodb:
-    image: mongo
-    environment:
+  mongodb: # service名稱
+    image: mongo # image名稱
+    environment: # 環境變數, 類似再使用docker cil輸入 docker run -e xxxx -e xxxx
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
-    ports:
+    ports: # ports設定, 對應到host:container
       - "27017:27017"
-    volumes:
+    volumes: # 資料掛載的位置
       - mongodb_data:/data/db
-    networks:
+    networks: # 使用到的docker network, 這是自己創建的, 使用到bridge方式連線
       - app_network
-    pull_policy: always
+    pull_policy: always # 永遠都會去拉最新的image, 避免有更新但還是使用舊的image跑container
 
-  api:
-    image: qmoo/ccsa-api
-    ports:
+  api: # service名稱
+    image: qmoo/ccsa-api # image名稱
+    ports:  # ports設定, 對應到host:container
       - "5001:5001"
-    environment:
+    environment:  # 環境變數, 類似再使用docker cil輸入 docker run -e xxxx -e xxxx
       - MONGO_HOST=mongodb
       - MONGO_PORT=27017
       - MONGO_USERNAME=admin
       - MONGO_PASSWORD=password
-    depends_on:
+    depends_on: # 這是解決依賴相關問題所需的, 因為mongodb需要先啟動, 我的api server才可以連線到, 所以使用這個讓service知道, 需要先等待mongodb啟動後, 才可以啟動api
       - mongodb
-    networks:
+    networks: # 使用到的docker network, 這是自己創建的, 使用到bridge方式連線
       - app_network
-    pull_policy: always
+    pull_policy: always # 永遠都會去拉最新的image, 避免有更新但還是使用舊的image跑container
 
-  frontend:
-    image: qmoo/ccsa-frontend
-    ports:
+  frontend: # service名稱
+    image: qmoo/ccsa-frontend # image名稱
+    ports: # ports設定, 對應到host:container
       - "30800:30800"
-    depends_on:
+    depends_on: # 跟上面敘述相同, 因為我web需要透過api來拉取資料庫的資料, 所以我的前端也需要等待api service啟動才可以啟動自己。
       - api
-    networks:
+    networks: # 使用到的docker network, 這是自己創建的, 使用到bridge方式連線
       - app_network
-    pull_policy: always
+    pull_policy: always # 永遠都會去拉最新的image, 避免有更新但還是使用舊的image跑container
     
-volumes:
+volumes: # 將數據存在local端
   mongodb_data:
 
-networks:
-  app_network:
-    driver: bridge
+networks: # 創建網路的設定黨
+  app_network: # 網路名稱
+    driver: bridge # 使用bridge方式
