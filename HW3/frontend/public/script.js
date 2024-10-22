@@ -1,6 +1,6 @@
 let currentDate = new Date();
 let appointments = {};
-const API_URL = 'http://192.168.61.3:5001';
+// const API_URL = 'http://192.168.61.3:5001';
 
 document.addEventListener('DOMContentLoaded', function() {
     const formSection = document.getElementById('appointment-form');
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function getAppointments(){
     // 获取所有预约
-    fetch(`${API_URL}/api/appointments`)
+    fetch(`/api/appointments`)
     .then(response => response.json())
     .then(data => {
         appointments = data;
@@ -65,7 +65,7 @@ function handleSubmit(event) {
     };
 
     // 发送预约信息到API
-    fetch(`${API_URL}/api/appointments`, {
+    fetch(`/api/appointments`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -88,7 +88,7 @@ function handleSubmit(event) {
 
 async function cancelAppointment(appointmentId) {
     try {
-        const response = await fetch(`${API_URL}/api/appointments/${appointmentId}`, {
+        const response = await fetch(`/api/appointments/${appointmentId}`, {
             method: 'DELETE',
         });
         if (!response.ok) {
@@ -121,7 +121,7 @@ async function searchAppointmentsByName(name) {
         const params = new URLSearchParams();
         if (name) params.append('name', name);
 
-        const response = await fetch(`${API_URL}/api/appointments/search?${params.toString()}`);
+        const response = await fetch(`/api/appointments/search?${params.toString()}`);
         if (!response.ok) {
             throw new Error('查詢預約失敗');
         }
@@ -222,7 +222,7 @@ async function handleEditSubmit(event) {
     const service = document.getElementById('editService').value;
 
     try {
-        const response = await fetch(`${API_URL}/api/appointments/${id}`, {
+        const response = await fetch(`/api/appointments/${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
