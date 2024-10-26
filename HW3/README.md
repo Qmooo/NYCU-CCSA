@@ -28,16 +28,29 @@ python3 app.py
 
 ## Screenshot
 
+### Ping
+ping from frontend to backend and from backend to frontend.
+
+<br>
+<p align="center">
+    <img src="image/6.png">
+</p>
+
+<br>
+<p align="center">
+    <img src="image/7.png">
+</p>
+
 ### 主頁預約
 可以在主頁輸入預約資訊, 然後選擇日期,時間,服務項目。
 
 <br>
 <p align="center">
-    <img src="image/1.png">
+    <img src="image/6.png">
 </p>
 <br>
 <p align="center">
-    <img src="image/2.png">
+    <img src="image/7.png">
 </p>
 
 ### 查詢預約
@@ -59,3 +72,4 @@ python3 app.py
 <p align="center">
     <img src="image/5.png">
 </p>
+
