@@ -33,11 +33,11 @@ python3 app.py
 
 <br>
 <p align="center">
-    <img src="img/1.png">
+    <img src="image/1.png">
 </p>
 <br>
 <p align="center">
-    <img src="img/2.png">
+    <img src="image/2.png">
 </p>
 
 ### 查詢預約
@@ -45,11 +45,11 @@ python3 app.py
 
 <br>
 <p align="center">
-    <img src="img/3.png">
+    <img src="image/3.png">
 </p>
 <br>
 <p align="center">
-    <img src="img/4.png">
+    <img src="image/4.png">
 </p>
 
 ### 預約日歷
@@ -57,5 +57,5 @@ python3 app.py
 
 <br>
 <p align="center">
-    <img src="img/5.png">
+    <img src="image/5.png">
 </p>
